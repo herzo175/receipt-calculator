@@ -1,5 +1,7 @@
 # Receipt Calculator
 
+https://herzo175.github.io/receipt-calculator/
+
 A simple React + Gatsby site for splitting receipts
 
 ## Overview
