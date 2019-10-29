@@ -1,6 +1,6 @@
 import React from "react"
 
-import { Card, InputGroup, FormControl, Button } from "react-bootstrap"
+import { Card, InputGroup, FormControl, Button, Row, Col } from "react-bootstrap"
 
 class Members extends React.Component {
   constructor(props) {
@@ -34,13 +34,27 @@ class Members extends React.Component {
       <Card>
         <Card.Body>
           {this.props.members.map((member, i) => (
-            <Card.Title key={i}>
-              {member.name} - $
-              {this.calculateMemberTotal(member.name).toFixed(2)}
-            </Card.Title>
+            <Row style={{ paddingBottom: "1em" }}>
+              <Col xs={9}>
+                <Card.Title key={i}>
+                  {member.name} - $
+                  {this.calculateMemberTotal(member.name).toFixed(2)}
+                </Card.Title>
+              </Col>
+              <Col>
+                <div style={{ display: "flex" }}>
+                  <Button
+                    variant="danger"
+                    onClick={() => this.props.removeMember(member.name)}
+                    style={{ marginLeft: "auto" }}
+                    variant="danger"
+                  >
+                    Remove
+                  </Button>
+                </div>
+              </Col>
+            </Row>
           ))}
-
-          <br />
 
           <InputGroup className="mb-3">
             <FormControl

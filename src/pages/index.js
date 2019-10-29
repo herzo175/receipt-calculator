@@ -18,6 +18,7 @@ class IndexPage extends React.Component {
     }
 
     this.addMember = this.addMember.bind(this)
+    this.removeMember = this.removeMember.bind(this)
     this.checkMember = this.checkMember.bind(this)
     this.uncheckMember = this.uncheckMember.bind(this)
     this.addItem = this.addItem.bind(this)
@@ -28,6 +29,15 @@ class IndexPage extends React.Component {
     this.state.members.push({ name: memberName })
     this.state.items.forEach(item => {
       item.members.push(memberName)
+    })
+
+    this.setState({ members: this.state.members, items: this.state.items })
+  }
+
+  removeMember(memberName) {
+    this.state.members.splice(this.state.members.findIndex(m => m.name === memberName), 1)
+    this.state.items.forEach(item => {
+      item.members.splice(item.members.findIndex(m => m.name === memberName), 1)
     })
 
     this.setState({ members: this.state.members, items: this.state.items })
@@ -88,6 +98,7 @@ class IndexPage extends React.Component {
                 members={this.state.members}
                 items={this.state.items}
                 addMember={this.addMember}
+                removeMember={this.removeMember}
               />
             </Col>
           </Row>
